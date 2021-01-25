@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>LIBRARY APP</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="./css/styles.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <script src="./js/script.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="./css/bootstrap.min.css">
+	</head>
+<body style="background-color: black;">
+<header class="navbar navbar-bright navbar-fixed-top" role="banner" style="background-color: rgb(66, 62, 62);">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">Home</a>
+    </div>
+    <nav class="collapse navbar-collapse" role="navigation">
+      
+      <ul class="nav navbar-right navbar-nav">
+        <%for(i=0;i<nav1.length;i++){%>
+            <li>
+              <a href="<%=nav1[i].link%>"><%=nav1[i].name%></a>
+            </li>
+        <%}%>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div id="masthead">  
+  <div class="container" >
+    <div class="row">
+      <div >
+       <center><br><br> <h1 style="font-family: 'Courier New', Courier, monospace; color: white; font-size: 80px;">Discover Books You'll Love</h1></center><br><br>
+      </div>
+      </div>
+    </div> 
+  </div><!-- /cont -->
+  
+
+<hr id="hh1"><br><br>
+<div style="background-color: black;">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12"> 
+      <form action="/signup/done" class="signup" style="border:1px solid #ccc" onsubmit="return Validate();">
+        <div class="container2">
+          <h1>Sign Up</h1>
+         <br><br><hr>
+          <label for="text"><b>Name</b></label>
+          <input type="text" placeholder="Enter name (without space)" name="name" id="a2" required>
+          <label for="email"><b>Email</b></label>
+          <input id="email" type="text" placeholder="Enter Email" name="email" required>
+          <label for="phonenumbr"><b>Mobile Number</b></label>
+          <input id="num" type="text" placeholder="Enter Number" name="phonenumbr" required>
+          <label for="psw"><b>Password</b></label><span id="strength"></span>
+          <input id="password" type="password" placeholder="Enter Password" name="psw" onkeyup="return ValidatePassword();" required>
+          <label>
+          <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> 
+          By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>
+          </label>
+          <div class="clearfix">
+            <button type="button" class="cancelbtn1">Cancel</button>
+            <button type="submit" id="submit" class="signupbtn button1">Sign Up</button>   
+          </div>
+        </div>
+      </form>
+   	</div><!--/col-12-->
+  </div>
+</div>
+                                                
+</div>                                                                              
+
+<footer >
+    <div style="color:white; ">
+          <p><center>copyright@library_app</center></p>         
+    </div>
+</footer>
+
+  <!-- script references -->
+  
+ <script>let email = document.getElementById("email");
+    let psw = document.getElementById("password");
+    let num = document.getElementById("num");
+    
+    function Validate() 
+    {
+     let passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
+     let format = /^([A-Za-z0-9\.-]+)@([A-Za-z0-9\.-]+).([a-z]{2,3}).([a-z]{2,3})?$/;
+     let phone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+     let phoneno = /^\d{10}$/;
+    
+     if (format.test(email.value)){
+        if(passw.test(psw.value)){ 
+            if(phone.test(num.value))
+            {
+             return true; 
+            }
+            else
+            {
+               alert("Not a valid Phone Number");
+               return false;
+            }
+        }
+        else
+        { 
+        alert('Wrong Password...!')
+        return false;
+        }
+     }
+     else{
+        alert("You have entered an invalid email address!")
+        return (false)
+      }
+    }
+    
+    function ValidatePassword(){
+        var strength = document.getElementById('strength');
+        var strong = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+        var medium = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+        if (strong.test(psw.value)) {
+            strength.innerHTML = '<span style="color:green">Strong!</span>';
+        } else if (medium.test(psw.value)) {
+            strength.innerHTML = '<span style="color:orange">Medium!</span>';
+        } else {
+            strength.innerHTML = '<span style="color:red">Weak!</span>';
+        }
+    }
+    </script>
+</body>
+</html>
